@@ -1,4 +1,6 @@
 import unittest
+from io import StringIO
+from unittest.mock import patch
 from koffiespel import KoffieSpel
 
 class TestKoffiespel(unittest.TestCase):
@@ -24,3 +26,9 @@ class TestKoffiespel(unittest.TestCase):
         elif tweede_getal != derde_getal:
             verschil = True
         self.assertTrue(verschil)
+
+    @patch('builtins.input', lambda *args: '10')
+    def test_vraag_om_getal(self):
+        out = StringIO()
+        self.koffie.ask(out=out)
+        self.assertEqual(out.getvalue(),"I have a number in mind between 1 and 100, guess which it is: ")
