@@ -1,6 +1,8 @@
+import random
+
 class KoffieSpel:
     def __init__(self):
-        self.getal = 5
+        self.getal = random.randint(1, 100)
 
     def play(self):
         pass
