@@ -3,6 +3,7 @@ from io import StringIO
 from unittest.mock import patch
 from koffiespel import KoffieSpel
 
+
 class TestKoffiespel(unittest.TestCase):
     def setUp(self):
         self.koffie = KoffieSpel()
@@ -31,4 +32,11 @@ class TestKoffiespel(unittest.TestCase):
     def test_vraag_om_getal(self):
         out = StringIO()
         self.koffie.ask(out=out)
-        self.assertEqual(out.getvalue(),"I have a number in mind between 1 and 100, guess which it is: ")
+        self.assertEqual(out.getvalue(), "I have a number in mind between 1 and 100, guess which it is: ")
+
+    @patch('builtins.input', lambda *args: '10')
+    def test_kijk_of_getal_gelijk_is(self):
+        out = StringIO()
+        self.koffie.getal = 10
+        self.koffie.ask(out=out)
+        print(out.getvalue())
