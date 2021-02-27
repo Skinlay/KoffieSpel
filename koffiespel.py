@@ -7,7 +7,10 @@ class KoffieSpel:
         self.getal = random.randint(1, 100)
 
     def play(self):
-        self.ask(aantal=0)
+        aantal = 0
+        while True:
+            self.ask(aantal=aantal)
+            aantal += 1
 
     def ask(self, aantal, out=sys.stdout):
         if aantal == 0:
